@@ -19,6 +19,7 @@ public class Cpu {
     private String cores;
     private String threads;
     private String img;
+    private String bodyImage;
     private boolean active;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
@@ -29,7 +30,7 @@ public class Cpu {
     }
 
     public Cpu(int cpuId, String manufacturer, String type, String generation,
-            String model, String socket, String cores, String threads,
+            String model, String socket, String cores, String threads, String bodyImage,
             String img, boolean active) {
         this();
         this.cpuId = cpuId;
@@ -40,6 +41,7 @@ public class Cpu {
         this.socket = socket;
         this.cores = cores;
         this.threads = threads;
+        this.bodyImage = bodyImage;
         this.img = img;
         this.active = active;
     }
