@@ -1,8 +1,10 @@
 package com.techstore.app.repository;
 
 import java.time.LocalDateTime;
+import java.util.HashSet;
 import java.util.Set;
 import java.util.TreeSet;
+import java.util.stream.Collectors;
 
 import org.springframework.stereotype.Repository;
 
@@ -16,11 +18,41 @@ public class CpuRepository {
         _cpu.add(cpu);
     }
 
-    public Cpu getCpuBiId(int id) {
-        return _cpu.stream().filter(i -> i.getCpuId() == id).findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(String.format("No Cpu found with id %d", id), null));
+    // returns all cpu (active and inactive)
+    public Set<Cpu> getAllCpu() {
+        return new HashSet<>(_cpu);
     }
 
+    // returns only active cpu
+    public Set<Cpu> GetActiveCpu() {
+        return _cpu.stream()
+                .filter(Cpu::isActive)
+                .collect(Collectors.toSet());
+    }
+
+    // returns inactive cpu list if its exist
+    public Set<Cpu> GetInactiveCpu() {
+        Set<Cpu> result = _cpu.stream()
+                .filter(cpu -> !cpu.isActive())
+                .collect(Collectors.toSet());
+
+        if (result.isEmpty()) {
+            return new HashSet<>();
+        }
+
+        return result;
+    }
+
+    // selects current cpu with the id
+    public Cpu getCpuBiId(int id) {
+        return _cpu.stream()
+                .filter(i -> i.getCpuId() == id)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(
+                        String.format("No Cpu found with id %d", id)));
+    }
+
+    // deactivates cpu status to false
     public Cpu deactivateCpuStatus(int id) {
         var cpu = getCpuBiId(id);
 
@@ -34,6 +66,7 @@ public class CpuRepository {
         return cpu;
     }
 
+    // activates cpu status to true
     public Cpu activateCpuStatus(int id) {
         var cpu = getCpuBiId(id);
 
