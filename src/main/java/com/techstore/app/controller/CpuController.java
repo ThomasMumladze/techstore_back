@@ -2,16 +2,17 @@ package com.techstore.app.controller;
 
 import java.util.Set;
 
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.techstore.app.model.Cpu;
 import com.techstore.app.services.CpuServices;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 
-@Controller
+@RestController
 @RequestMapping("/api/cpu")
 @CrossOrigin("http://localhost:5173")
 public class CpuController {
@@ -36,12 +37,12 @@ public class CpuController {
         return _CpuServices.GetInActiveCpu();
     }
 
-    @GetMapping("/deactivate-cpu/{cpuId}")
+    @PutMapping("/deactivate-cpu/{cpuId}")
     public Cpu deactivateCpu(@PathVariable int cpuId) {
         return _CpuServices.DeactivateCpuStatus(cpuId);
     }
 
-    @GetMapping("/activate-cpu/{cpuId}")
+    @PutMapping("/activate-cpu/{cpuId}")
     public Cpu activateCpu(@PathVariable int cpuId) {
         return _CpuServices.ActivateCpuStatus(cpuId);
     }
