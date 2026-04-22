@@ -8,10 +8,12 @@ import com.techstore.app.services.GpuServices;
 
 import java.util.Set;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 
 @RestController
 @RequestMapping("api/gpu")
+@CrossOrigin("http://localhost:5173")
 public class GpuController {
     private final GpuServices _GpuServices;
 
