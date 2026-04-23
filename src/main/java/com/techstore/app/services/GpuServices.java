@@ -16,6 +16,18 @@ public class GpuServices {
     }
 
     public Set<Gpu> getAllGpu() {
-        return _GpuRepository.ReturnAllGpu();
+        return _GpuRepository.GetAllGpu();
+    }
+
+    public Set<Gpu> getActiveGpu() {
+        return _GpuRepository.GetActiveGpu();
+    }
+
+    public Set<Gpu> getInActiveGpu() {
+        return _GpuRepository.GetInActiveGpu();
+    }
+
+    public Gpu getGpuById(int id) {
+        return _GpuRepository.GetGpuById(id);
     }
 }
