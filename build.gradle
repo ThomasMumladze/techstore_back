@@ -32,7 +32,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
 	implementation 'com.h2database:h2'
 	runtimeOnly 'org.postgresql:postgresql' 
+	runtimeOnly 'com.microsoft.sqlserver:mssql-jdbc'
 }
+
+
 
 tasks.named('test') {
 	useJUnitPlatform()
