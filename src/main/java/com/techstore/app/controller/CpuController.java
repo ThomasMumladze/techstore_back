@@ -2,11 +2,13 @@ package com.techstore.app.controller;
 
 import java.util.Set;
 
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.techstore.app.model.Cpu;
+
 import com.techstore.app.services.CpuServices;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -23,18 +25,29 @@ public class CpuController {
     }
 
     @GetMapping("")
-    public Set<Cpu> getAllCpu() {
-        return _CpuServices.GetAllCpu();
+    public ResponseEntity<Set<Cpu>> getAllCpu() {
+        Set<Cpu> cpus = _CpuServices.GetAllCpu();
+        if (cpus.isEmpty())
+            return ResponseEntity.noContent().build();
+        return ResponseEntity.ok(cpus);
     }
 
     @GetMapping("/active-cpu")
-    public Set<Cpu> getActiveCpu() {
-        return _CpuServices.GetActiveCpu();
+    public ResponseEntity<Set<Cpu>> getActiveCpu() {
+        Set<Cpu> cpus = _CpuServices.GetActiveCpu();
+        if (cpus.isEmpty()) {
+            return ResponseEntity.noContent().build(); // 204
+        }
+        return ResponseEntity.ok(cpus); // 200
     }
 
     @GetMapping("/inactive-cpu")
-    public Set<Cpu> getInActiveCpu() {
-        return _CpuServices.GetInActiveCpu();
+    public ResponseEntity<Set<Cpu>> getInActiveCpu() {
+        Set<Cpu> cpus = _CpuServices.GetInActiveCpu();
+        if (cpus.isEmpty()) {
+            return ResponseEntity.noContent().build(); // 204
+        }
+        return ResponseEntity.ok(cpus); // 200
     }
 
     @PutMapping("/deactivate-cpu/{cpuId}")
