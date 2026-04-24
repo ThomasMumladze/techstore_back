@@ -57,11 +57,10 @@ public class Gpu {
         this.updatedAt = LocalDateTime.now();
     }
 
-    public Gpu(int gpuId, String brand, String manufacturer, String capacity,
+    public Gpu(String brand, String manufacturer, String capacity,
             String model, String interfaceType, String ramType,
-            String img, String bodyImage, boolean isActive) {
+            String img, String bodyImage) {
         this();
-        this.gpuId = gpuId;
         this.brand = brand;
         this.manufacturer = manufacturer;
         this.capacity = capacity;
@@ -70,6 +69,5 @@ public class Gpu {
         this.ramType = ramType;
         this.img = img;
         this.bodyImage = bodyImage;
-        this.isActive = isActive;
     }
 }

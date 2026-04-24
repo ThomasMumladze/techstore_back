@@ -16,6 +16,7 @@ import lombok.Data;
 public class Cpu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "cpu_id")
     private int cpuId;
 
     @Column(name = "manufacturer", nullable = false, length = 30)
