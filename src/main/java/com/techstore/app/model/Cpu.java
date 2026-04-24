@@ -59,11 +59,10 @@ public class Cpu {
         this.updatedAt = LocalDateTime.now();
     }
 
-    public Cpu(int cpuId, String manufacturer, String type, String generation,
+    public Cpu(String manufacturer, String type, String generation,
             String model, String socket, int cores, int threads, String bodyImage,
-            String img, boolean active) {
+            String img) {
         this();
-        this.cpuId = cpuId;
         this.manufacturer = manufacturer;
         this.type = type;
         this.generation = generation;
@@ -73,6 +72,5 @@ public class Cpu {
         this.threads = threads;
         this.bodyImage = bodyImage;
         this.img = img;
-        this.active = active;
     }
 }
