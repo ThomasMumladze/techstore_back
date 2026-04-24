@@ -1,6 +1,7 @@
 package com.techstore.app.repository;
 
 import java.util.HashSet;
+import java.util.Optional;
 import java.util.Set;
 import java.util.TreeSet;
 import java.util.stream.Collectors;
@@ -39,8 +40,11 @@ public class GpuRepository {
 
     // selects current gpu with the id
     public Gpu GetGpuById(int id) {
-        return _gpu.stream().filter(i -> i.getGpuId() == id).findFirst()
-                .orElseThrow(() -> new IllegalArgumentException(String.format("No Gpu Found with id %d", id)));
+        return _gpu.stream()
+                .filter(i -> i.getGpuId() == id)
+                .findFirst()
+                .orElseThrow(() -> new IllegalArgumentException(
+                        String.format("No Gpu Found with id %d", id)));
     }
 
 }

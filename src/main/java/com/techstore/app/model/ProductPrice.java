@@ -8,6 +8,7 @@ import lombok.Data;
 @Data
 public class ProductPrice {
     private int priceId;
+    private int productId;
 
     private BigDecimal originalPrice;
     private BigDecimal finalPrice;
