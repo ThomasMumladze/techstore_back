@@ -71,10 +71,6 @@ public class CpuServices {
                 "https://athome.ge/wp-content/uploads/2025/09/Intel-Core-i7-13700K.png , https://www.techspot.com/articles-info/2554/images/2022-10-21-image-12.jpg , https://i.pcmag.com/imagery/reviews/00K9GpRPJgD6fW3IsnUMD21-5..v1681999901.jpg",
                 "https://m.media-amazon.com/images/I/515lU6LNpsL.jpg");
 
-        cpu.setCreatedAt(LocalDateTime.now());
-        cpu.setUpdatedAt(LocalDateTime.now());
-        cpu.setActive(true);
-
         if (cpu.getManufacturer() == null || cpu.getManufacturer().isBlank())
             throw new IllegalArgumentException("Manufacturer cannot be empty");
 
@@ -103,7 +99,12 @@ public class CpuServices {
             Cpu saved = _cpuRepository.save(cpu);
             if (saved.getCpuId() <= 0)
                 throw new RuntimeException("CPU was not saved successfully");
-            return saved;
+
+            cpu.setCreatedAt(LocalDateTime.now());
+            cpu.setUpdatedAt(LocalDateTime.now());
+            cpu.setActive(true);
+
+            return _cpuRepository.save(saved);
         } catch (Exception e) {
             throw new RuntimeException("Failed to save CPU: " + e.getMessage());
         }
