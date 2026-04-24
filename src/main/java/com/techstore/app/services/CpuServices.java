@@ -75,8 +75,37 @@ public class CpuServices {
         cpu.setUpdatedAt(LocalDateTime.now());
         cpu.setActive(true);
 
-        _cpuRepository.save(cpu);
+        if (cpu.getManufacturer() == null || cpu.getManufacturer().isBlank())
+            throw new IllegalArgumentException("Manufacturer cannot be empty");
 
-        return cpu;
+        if (cpu.getType() == null || cpu.getType().isBlank())
+            throw new IllegalArgumentException("Type cannot be empty");
+
+        if (cpu.getGeneration() == null || cpu.getGeneration().isBlank())
+            throw new IllegalArgumentException("Generation cannot be empty");
+
+        if (cpu.getModel() == null || cpu.getModel().isBlank())
+            throw new IllegalArgumentException("Model cannot be empty");
+
+        if (cpu.getSocket() == null || cpu.getSocket().isBlank())
+            throw new IllegalArgumentException("Socket cannot be empty");
+
+        if (cpu.getCores() <= 0)
+            throw new IllegalArgumentException("Cores must be greater than 0");
+
+        if (cpu.getThreads() <= 0)
+            throw new IllegalArgumentException("Threads must be greater than 0");
+
+        if (cpu.getImg() == null || cpu.getImg().isBlank())
+            throw new IllegalArgumentException("Image cannot be empty");
+
+        try {
+            Cpu saved = _cpuRepository.save(cpu);
+            if (saved.getCpuId() <= 0)
+                throw new RuntimeException("CPU was not saved successfully");
+            return saved;
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to save CPU: " + e.getMessage());
+        }
     }
 }
