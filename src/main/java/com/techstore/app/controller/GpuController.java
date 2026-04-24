@@ -6,7 +6,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.techstore.app.model.Gpu;
 import com.techstore.app.services.GpuServices;
 
-import java.util.Optional;
 import java.util.Set;
 
 import org.springframework.http.ResponseEntity;
@@ -51,13 +50,8 @@ public class GpuController {
         return ResponseEntity.ok(gpus); // 200
     }
 
-    // @GetMapping("/{id}")
-    // public ResponseEntity<Gpu> getGpuById(@PathVariable int id) {
-    // Optional<Gpu> gpu = _GpuServices.getGpuById(id);
-    // if (gpu.isPresent()) {
-    // return ResponseEntity.ok(gpu.get()); // 200
-    // }
-    // return ResponseEntity.notFound().build(); // 404
-    // }
-
+    @GetMapping("/{id}")
+    public ResponseEntity<Gpu> getGpuById(@PathVariable int id) {
+        return ResponseEntity.ok(_GpuServices.getGpuById(id));
+    }
 }
