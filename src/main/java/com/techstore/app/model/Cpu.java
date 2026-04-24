@@ -2,6 +2,8 @@ package com.techstore.app.model;
 
 import java.time.LocalDateTime;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -13,6 +15,8 @@ import lombok.Data;
 @Data
 @Entity
 @Table(name = "cpu", schema = "techstore_schema")
+@JsonPropertyOrder({ "cpuId", "manufacturer", "type", "generation", "model", "socket", "cores", "threads", "img",
+        "bodyImage", "active", "createdAt", "updatedAt" })
 public class Cpu {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
