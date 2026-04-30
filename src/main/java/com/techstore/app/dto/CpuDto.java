@@ -18,4 +18,6 @@ class CpuDto {
     private int threads;
     private String img;
     private String bodyImage;
+
+    private CpuDto cpuDto = new CpuDto();
 }
