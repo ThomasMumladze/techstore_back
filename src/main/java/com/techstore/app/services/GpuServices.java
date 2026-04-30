@@ -1,5 +1,6 @@
 package com.techstore.app.services;
 
+import java.util.List;
 import java.util.Set;
 
 import org.springframework.stereotype.Service;
@@ -9,25 +10,25 @@ import com.techstore.app.repository.GpuRepository;
 
 @Service
 public class GpuServices {
-    private final GpuRepository _GpuRepository;
+    private final GpuRepository _gpuRepository;
 
     public GpuServices(GpuRepository gpuRepository) {
-        this._GpuRepository = gpuRepository;
+        this._gpuRepository = gpuRepository;
     }
 
-    public Set<Gpu> getAllGpu() {
-        return _GpuRepository.GetAllGpu();
+    // return sets of active Gpu
+    public Set<Gpu> GetActiveGpu() {
+        return _gpuRepository.getActiveGpu();
     }
 
-    public Set<Gpu> getActiveGpu() {
-        return _GpuRepository.GetActiveGpu();
+    // return sets of inactive Gpu
+    public Set<Gpu> GetInActiveGpu() {
+        return _gpuRepository.getInactiveGpus();
     }
 
-    public Set<Gpu> getInActiveGpu() {
-        return _GpuRepository.GetInActiveGpu();
+    // return all status Gpu
+    public List<Gpu> GetAllGpu() {
+        return _gpuRepository.findAll();
     }
 
-    public Gpu getGpuById(int id) {
-        return _GpuRepository.GetGpuById(id);
-    }
 }
