@@ -1,7 +1,5 @@
 package com.techstore.app.dto;
 
-import com.techstore.app.model.ProductPrice;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,6 +18,4 @@ class CpuDto {
     private int threads;
     private String img;
     private String bodyImage;
-
-    private ProductPrice productPrice = new ProductPrice();
 }
