@@ -43,8 +43,8 @@ public class Gpu {
     @Column(name = "body_image", nullable = false, columnDefinition = "NVARCHAR(MAX)")
     private String bodyImage;
 
-    @Column(name = "is_active", nullable = false)
-    private boolean isActive;
+    @Column(name = "active", nullable = false)
+    private boolean active;
 
     @Column(name = "created_at", nullable = false, updatable = false)
     private LocalDateTime createdAt;
