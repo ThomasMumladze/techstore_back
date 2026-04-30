@@ -24,7 +24,7 @@ public class CpuServices {
 
     // returns set of the inactive cpu
     public Set<Cpu> GetInActiveCpu() {
-        return _cpuRepository.getActiveCpu();
+        return _cpuRepository.getInactiveCpu();
     }
 
     // returns all status cpu
