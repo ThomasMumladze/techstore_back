@@ -5,7 +5,10 @@ import org.slf4j.LoggerFactory;
 import java.util.concurrent.CompletableFuture;
 
 import org.springframework.scheduling.annotation.Async;
+import org.springframework.stereotype.Service;
 
+@Service
+@Async
 public class AsyncService {
 
     private static final Logger log = LoggerFactory.getLogger(AsyncService.class);
